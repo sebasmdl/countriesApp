@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ByCapitalComponent } from './pages/by-capital/by-capital.component';
 import { ByCountryComponent } from './pages/by-country/by-country.component';
 import { ByRegionComponent } from './pages/by-region/by-region.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { CountryTableComponent } from './components/country-table/country-table.component';
 
 
 
@@ -10,10 +13,13 @@ import { ByRegionComponent } from './pages/by-region/by-region.component';
   declarations: [
     ByCapitalComponent,
     ByCountryComponent,
-    ByRegionComponent
+    ByRegionComponent,
+    CountryTableComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    RouterModule
   ],
   exports:[
     ByCapitalComponent,
