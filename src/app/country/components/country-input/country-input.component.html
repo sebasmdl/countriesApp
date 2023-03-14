@@ -1,0 +1,8 @@
+<form (ngSubmit)="search()" autocomplete="off">
+    <input type="text"
+           name="country"
+           [(ngModel)]="country"
+           class="form-control"
+           placeholder="{{placeholder}}"
+           (input)="keyPressed()">
+</form>

@@ -6,6 +6,7 @@ import { ByRegionComponent } from './pages/by-region/by-region.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CountryTableComponent } from './components/country-table/country-table.component';
+import { CountryInputComponent } from './components/country-input/country-input.component';
 
 
 
@@ -14,7 +15,8 @@ import { CountryTableComponent } from './components/country-table/country-table.
     ByCapitalComponent,
     ByCountryComponent,
     ByRegionComponent,
-    CountryTableComponent
+    CountryTableComponent,
+    CountryInputComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { CountryTableComponent } from './components/country-table/country-table.
   exports:[
     ByCapitalComponent,
     ByCountryComponent,
-    ByRegionComponent
+    ByRegionComponent,
+    CountryTableComponent
   ]
 })
 export class CountryModule { }

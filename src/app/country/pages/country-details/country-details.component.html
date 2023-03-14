@@ -1,1 +1,37 @@
-<p>country-details works!</p>
+<div *ngIf="!country && !translations; else divCountry" class="alert alert-info">
+    Loading.. country data it's coming
+</div>
+
+<ng-template #divCountry>
+    <div class="row">
+        <div class="col-6">
+            <h1>Country: <small>{{country.name.common}}</small></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <h3>Flag</h3>
+            <img [src]="country.flags.png" class="img-thumbnail">
+        </div >
+        <div class="col">
+            <h3>Information</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Population: </strong>{{country.population | number}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Numeric number: </strong>{{country.area}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Alpha3 code: </strong>{{country.cca2}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h3>Translations</h3>
+    <div class="row">
+        <div class="col">
+            <span class="badge bg-primary mr-1" *ngFor="let item of translations">{{item}}</span>
+        </div>
+    </div>
+</ng-template>
