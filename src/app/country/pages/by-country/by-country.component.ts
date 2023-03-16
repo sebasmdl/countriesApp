@@ -21,8 +21,7 @@ export class ByCountryComponent {
     this.country = country
     this.showSuggestions = false;
     this.byc_service.searchByCountry(this.country).subscribe({
-      next: (countries) => this.countries = countries,
-      
+      next: (countries) => this.countries = countries,      
       error: (e) => {
         this.error = `${country} ${e.error.message}`;
         this.showError = true
@@ -40,7 +39,7 @@ export class ByCountryComponent {
     this.showSuggestions = true;
     this.country = country;
     this.byc_service.searchByCountry(country).subscribe({
-      next: (country) => this.suggestedCountries = country.splice(0,5),
+      next: (countries) => this.suggestedCountries = countries.splice(0,5),
       error: (error) => this.suggestedCountries = []
     })
    }
