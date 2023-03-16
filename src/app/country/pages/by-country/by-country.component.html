@@ -1,15 +1,23 @@
 <h2>Search Country by name</h2>
 <hr>
 
-<div class="row">
+<div class="row animate__animated animate__faster animate__fadeInUp">
     <div class="col">
        <app-country-input
        placeholder="Search country by name"
-       (onEnter)="search($event)"
+       (onEnter)="search($event, true)"
        (onDebounce)="suggestions($event)"
        ></app-country-input>
     </div>
 </div>
+<ul class="list-group" *ngIf="showSuggestions">
+    <li class="list-group-item list-group-item-action" *ngFor="let country of suggestedCountries">
+        <a class="nav-link" [routerLink]="['/country', country.cca2]">{{country.name.common}}</a>
+    </li>
+    <li class="list-group-item list-group-item-action" >
+        <a class="nav-link" (click)='searchSuggestions(country)'>Busqueda completa de "{{country}}"</a>
+    </li>
+</ul>
 
 <div class="alert alert-danger" *ngIf="showError">{{error}}</div>
 

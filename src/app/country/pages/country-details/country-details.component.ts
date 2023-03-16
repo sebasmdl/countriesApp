@@ -22,7 +22,7 @@ export class CountryDetailsComponent implements OnInit {
       tap(console.log)
     )
     .subscribe(country => {
-      this.country = country[0]
+      this.country = country
       this.translations = Object.entries(this.country.translations).map(el => el[1].common)
     })
   } 

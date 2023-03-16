@@ -8,19 +8,23 @@ import { CountryService } from '../../services/country.service';
   styleUrls: ['./by-country.component.css']
 })
 export class ByCountryComponent {
-  country: string = 'Hola mundo';
+  country: string = '';
   error!: string;
   showError!: boolean;
   countries: Country[] = []
+  suggestedCountries: Country[] = []
+  showSuggestions:boolean = false;
   constructor(private byc_service: CountryService) { }
 
-  search(country:string){
+  search(country:string, enter:boolean){
+    if(country === this.country && enter) { return;}
     this.country = country
+    this.showSuggestions = false;
     this.byc_service.searchByCountry(this.country).subscribe({
       next: (countries) => this.countries = countries,
       
       error: (e) => {
-        this.error = `${this.country} ${e.error.message}`;
+        this.error = `${country} ${e.error.message}`;
         this.showError = true
         this.countries = []
         setTimeout(() => {
@@ -33,6 +37,14 @@ export class ByCountryComponent {
   }
   suggestions(country:string){
     this.showError = false;
-    console.log(country, 'suggest')
-  }
+    this.showSuggestions = true;
+    this.country = country;
+    this.byc_service.searchByCountry(country).subscribe({
+      next: (country) => this.suggestedCountries = country.splice(0,5),
+      error: (error) => this.suggestedCountries = []
+    })
+   }
+   searchSuggestions(country:string){
+      this.search(country, false);
+   }
 }

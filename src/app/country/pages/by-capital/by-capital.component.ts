@@ -8,19 +8,20 @@ import { CountryService } from '../../services/country.service';
   styleUrls: ['./by-capital.component.css']
 })
 export class ByCapitalComponent {
-  country: string = 'Hola mundo';
+  capital: string = 'Hola mundo';
   error!: string;
   showError!: boolean;
   countries: Country[] = []
   constructor(private byc_service: CountryService) { }
 
-  search(country:string){
-    this.country = country
-    this.byc_service.searchByCapital(this.country).subscribe({
+  search(capital:string){
+    if(capital === this.capital) { return;}
+    this.capital = capital
+    this.byc_service.searchByCapital(this.capital).subscribe({
       next: (countries) => this.countries = countries,
       
       error: (e) => {
-        this.error = `${this.country} ${e.error.message}`;
+        this.error = `${this.capital} ${e.error.message}`;
         this.showError = true
         this.countries = []
         setTimeout(() => {
@@ -31,8 +32,8 @@ export class ByCapitalComponent {
       complete: () => console.info('complete') 
     })
   }
-  suggestions(country:string){
+  suggestions(capital:string){
     this.showError = false;
-    console.log(country, 'suggest')
+    console.log(capital, 'suggest')
   }
 }
